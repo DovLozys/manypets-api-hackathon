@@ -67,7 +67,6 @@ export async function getAllQuotes(body) {
     }
   }
 
-
   // sum it up to get price
   console.log(clientDiscountedBreeds);
   console.log(petsPriceQuote);
