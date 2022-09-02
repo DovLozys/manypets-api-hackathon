@@ -23,34 +23,33 @@ export async function getAllQuotes(body) {
   }
 
   getAllQuotes();
-  
+
   // No of breeds
   let discountedBreeds = ["Pitbull", "Pug", "York"];
-//   async function breed() {
-//     response.forEach(item => 
-        
-        
-//         breeds.push(item.breed));
-//     console.log(breeds)
-//   }
-//     breed();
+  let clientDiscountedBreeds = [];
 
-async function discountedPriceNoOfBreeds(breed) {
-
-    response.filter(item => {
-        return item === "Pitbull" || "Pug" || "York";
-    })
-
-    if(breed === response.breed ){
-        console.log(petsPriceQuote.forEach(item => item * 0.9))
+  function checkDiscountedBreed() {
+    for (let count = 0; count < response.length; count++) {
+      if (response[count].breed === "Pitbull") {
+        clientDiscountedBreeds.push("Pitbull");
+        petsPriceQuote[count] = petsPriceQuote[count] * 0.9;
+      } else if (response[count].breed === "Pug") {
+        clientDiscountedBreeds.push("Pug");
+        petsPriceQuote[count] = petsPriceQuote[count] * 0.9;
+      } else if (response[count].breed === "York") {
+        clientDiscountedBreeds.push("York");
+        petsPriceQuote[count] = petsPriceQuote[count] * 0.9;
+      }
     }
-}
-discountedPriceNoOfBreeds();
+  }
+  checkDiscountedBreed();
+
   // is more than 3 address
 
   // 2 or more multi pet discount
 
   // sum it up to get price
+  console.log(clientDiscountedBreeds);
   console.log(petsPriceQuote);
   return petsPriceQuote;
 
