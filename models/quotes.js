@@ -51,21 +51,34 @@ export function getAllQuotes(body) {
 
   // No of breeds
 
-  // is more than 3 address
-  for ( let count = 0; count < response.length; count++) {
+  // Apply a 15% higher price to 3 address areas
+  // london, birmingham, liverpool will have a higher price
 
-if (response[count].address.includes ("London") || response[count].address.includes ("Birmingham") || response[count].address.includes ("Liverpool")) {
+  for (let count = 0; count < response.length; count++) {
+    if (
+    response[count].address.includes ("London") ||
+    response[count].address.includes ("Birmingham") ||
+    response[count].address.includes ("Liverpool")) {
+      for (let i = 0; i < petsPriceQuote.length; i++) {
+        petsPriceQuote[i] = petsPriceQuote[i] * 1.15;
+      }
+      break;
+    }
+  }
 
-  petsPriceQuote[0] = petsPriceQuote[0] * 1.15; 
+  // Apply the multi-pet discount at 10% for each pet when 2 or more pets are included
 
-  };
+  if(response.length > 2) {
+    for (let i = 0; i < petsPriceQuote.length; i++) {
+      petsPriceQuote[i] *= 0.9;
+    }
+  }
 
-//london, birmingham, liverpool - 15% higher
-
-  // 2 or more multi pet discount
 
   // sum it up to get price
+
   console.log(petsPriceQuote);
+
   return petsPriceQuote;
 
   // validation
