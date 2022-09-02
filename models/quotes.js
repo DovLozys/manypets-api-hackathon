@@ -1,55 +1,48 @@
-export function getAllQuotes(body) {
-  const response = body;
+export async function getAllQuotes(body) {
+  const response = await body;
 
   let petsPriceQuote = [];
 
   // base price £120
 
   // age of pet to apply 5% or 10%
-  for (let count = 0; count < response.length; count++) {
-    const age = response[count].age;
-    switch (age) {
-      case 1:
-        petsPriceQuote.push(126);
-        break;
-      case 2:
-        petsPriceQuote.push(132);
-        break;
+  async function getAllQuotes() {
+    function agePrice(num) {
+      const age = num.age;
 
-      case 3:
-        petsPriceQuote.push(138);
-        break;
-
-      case 4:
-        petsPriceQuote.push(144);
-        break;
-
-      case 5:
-        petsPriceQuote.push(150);
-        break;
-
-      case 6:
-        petsPriceQuote.push(162);
-        break;
-
-      case 7:
-        petsPriceQuote.push(174);
-        break;
-
-      case 8:
-        petsPriceQuote.push(186);
-        break;
-
-      case 9:
-        petsPriceQuote.push(198);
-        break;
-      case 10:
-        petsPriceQuote.push(210);
-        break;
+      // up to 5yrs, 5%
+      if (age <= 5) {
+        petsPriceQuote.push(120 * (0.05 * age + 1));
+      } else if (5 < age <= 10) {
+        // up to 10yrs, 10%
+        petsPriceQuote.push(120 * (0.1 * (age - 5) + 1 + 0.25));
+      }
     }
+
+    response.forEach(agePrice);
   }
 
+  getAllQuotes();
+
   // No of breeds
+  let discountedBreeds = ["Pitbull", "Pug", "York"];
+  let clientDiscountedBreeds = [];
+
+  function checkDiscountedBreed() {
+    for (let count = 0; count < response.length; count++) {
+      if (response[count].breed === "Pitbull") {
+        clientDiscountedBreeds.push("Pitbull");
+        petsPriceQuote[count] = petsPriceQuote[count] * 0.9;
+      } else if (response[count].breed === "Pug") {
+        clientDiscountedBreeds.push("Pug");
+        petsPriceQuote[count] = petsPriceQuote[count] * 0.9;
+      } else if (response[count].breed === "York") {
+        clientDiscountedBreeds.push("York");
+        petsPriceQuote[count] = petsPriceQuote[count] * 0.9;
+      }
+    }
+  }
+  checkDiscountedBreed();
 
   // Apply a 15% higher price to 3 address areas
   // london, birmingham, liverpool will have a higher price
@@ -68,7 +61,7 @@ export function getAllQuotes(body) {
 
   // Apply the multi-pet discount at 10% for each pet when 2 or more pets are included
 
-  if(response.length > 2) {
+  if(response.length >= 2) {
     for (let i = 0; i < petsPriceQuote.length; i++) {
       petsPriceQuote[i] *= 0.9;
     }
@@ -76,7 +69,7 @@ export function getAllQuotes(body) {
 
 
   // sum it up to get price
-
+  console.log(clientDiscountedBreeds);
   console.log(petsPriceQuote);
 
   return petsPriceQuote;
