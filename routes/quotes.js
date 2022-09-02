@@ -5,13 +5,13 @@ const quoteRouter = express.Router();
 /* GET users listing. */
 quoteRouter.get("/", function (req, res, next) {
   const body = req.body;
-  res.json({ message: "I wish we had some information to give you ☹️" });
+  //   res.json({ message: "I wish we had some information to give you ☹️" });
   const responseObject = {
     success: true,
-    message: "Returned all items",
-    payload: getAllQuotes(body)
+    message: "Returned price quote for all pets",
+    payload: getAllQuotes(body),
   };
-  res.status(200).json(responseObject)
+  res.status(200).json(responseObject);
 });
 
 // - get info from postman
@@ -19,7 +19,6 @@ quoteRouter.get("/", function (req, res, next) {
 // - how old is the pet
 
 export default quoteRouter;
-
 
 // [
 //   {
