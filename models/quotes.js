@@ -19,19 +19,40 @@ export async function getAllQuotes(body) {
       }
     }
 
-    let result = response.forEach(agePrice);
+    response.forEach(agePrice);
   }
 
   getAllQuotes();
+  
   // No of breeds
+  let discountedBreeds = ["Pitbull", "Pug", "York"];
+//   async function breed() {
+//     response.forEach(item => 
+        
+        
+//         breeds.push(item.breed));
+//     console.log(breeds)
+//   }
+//     breed();
 
+async function discountedPriceNoOfBreeds(breed) {
+
+    response.filter(item => {
+        return item === "Pitbull" || "Pug" || "York";
+    })
+
+    if(breed === response.breed ){
+        console.log(petsPriceQuote.forEach(item => item * 0.9))
+    }
+}
+discountedPriceNoOfBreeds();
   // is more than 3 address
 
   // 2 or more multi pet discount
 
   // sum it up to get price
   console.log(petsPriceQuote);
-  //   return petsPriceQuote;
+  return petsPriceQuote;
 
   // validation
 }
