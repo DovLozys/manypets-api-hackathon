@@ -1,54 +1,28 @@
-export function getAllQuotes(body) {
-  const response = body;
+export async function getAllQuotes(body) {
+  const response = await body;
 
   let petsPriceQuote = [];
 
   // base price £120
 
   // age of pet to apply 5% or 10%
-  for (count = 0; count < response.length; count++) {
-    const age = response[count].age;
-    switch (age) {
-      case 1:
-        petsPriceQuote.push(126);
-        break;
-      case 2:
-        petsPriceQuote.push(132);
-        break;
+  async function getAllQuotes() {
+    function agePrice(num) {
+      const age = num.age;
 
-      case 3:
-        petsPriceQuote.push(138);
-        break;
-
-      case 4:
-        petsPriceQuote.push(144);
-        break;
-
-      case 5:
-        petsPriceQuote.push(150);
-        break;
-
-      case 6:
-        petsPriceQuote.push(162);
-        break;
-
-      case 7:
-        petsPriceQuote.push(174);
-        break;
-
-      case 8:
-        petsPriceQuote.push(186);
-        break;
-
-      case 9:
-        petsPriceQuote.push(198);
-        break;
-      case 10:
-        petsPriceQuote.push(210);
-        break;
+      // up to 5yrs, 5%
+      if (age <= 5) {
+        petsPriceQuote.push(120 * (0.05 * age + 1));
+      } else if (5 < age <= 10) {
+        // up to 10yrs, 10%
+        petsPriceQuote.push(120 * (0.1 * (age - 5) + 1 + 0.25));
+      }
     }
+
+    let result = response.forEach(agePrice);
   }
 
+  getAllQuotes();
   // No of breeds
 
   // is more than 3 address
@@ -57,7 +31,7 @@ export function getAllQuotes(body) {
 
   // sum it up to get price
   console.log(petsPriceQuote);
-  return petsPriceQuote;
+  //   return petsPriceQuote;
 
   // validation
 }
