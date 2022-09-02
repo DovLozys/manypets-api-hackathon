@@ -5,11 +5,17 @@ const quoteRouter = express.Router();
 /* GET users listing. */
 quoteRouter.get("/", function (req, res, next) {
   const body = req.body;
+  const mockBody = [
+    {age: 1, address: 'London'},
+    {age: 10, address: 'London'},
+    {age: 5, address: 'Manchester'}
+  ];
+
   //   res.json({ message: "I wish we had some information to give you ☹️" });
   const responseObject = {
     success: true,
     message: "Returned price quote for all pets",
-    payload: getAllQuotes(body),
+    payload: getAllQuotes(mockBody),
   };
   res.status(200).json(responseObject);
 });
