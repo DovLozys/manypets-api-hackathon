@@ -6,7 +6,7 @@ export function getAllQuotes(body) {
   // base price £120
 
   // age of pet to apply 5% or 10%
-  for (count = 0; count < response.length; count++) {
+  for (let count = 0; count < response.length; count++) {
     const age = response[count].age;
     switch (age) {
       case 1:
@@ -52,6 +52,15 @@ export function getAllQuotes(body) {
   // No of breeds
 
   // is more than 3 address
+  for ( let count = 0; count < response.length; count++) {
+
+if (response[count].address.includes ("London") || response[count].address.includes ("Birmingham") || response[count].address.includes ("Liverpool")) {
+
+  petsPriceQuote[0] = petsPriceQuote[0] * 1.15; 
+
+  };
+
+//london, birmingham, liverpool - 15% higher
 
   // 2 or more multi pet discount
 
