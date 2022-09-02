@@ -20,7 +20,7 @@ async function createPetsTable() {
     );
     `
   );
-  console.log(response.status);
+  console.log(response);
   console.log("petsTable created successfully");
 }
 

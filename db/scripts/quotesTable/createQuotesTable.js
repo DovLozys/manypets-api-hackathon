@@ -13,7 +13,7 @@ async function createQuotesTable() {
     );
     `
   );
-  console.log(response.status);
+  console.log(response);
   console.log("quotesTable created successfully");
 }
 
